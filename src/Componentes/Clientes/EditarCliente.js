@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { CLIENTE_QUERY } from '../queries/index';
+import { CLIENTE_QUERY } from '../../queries/index';
 import { Query } from 'react-apollo';
 import FormularioEditarCliente from './FormularioEditarCliente';
 

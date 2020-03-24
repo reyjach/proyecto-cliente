@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ACTUALIZAR_CLIENTE } from '../mutations/index';
+import { ACTUALIZAR_CLIENTE } from '../../mutations/index';
 import { Mutation } from 'react-apollo';
 import { withRouter } from 'react-router-dom';
 

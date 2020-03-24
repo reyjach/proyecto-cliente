@@ -1,9 +1,9 @@
 import React,{Component} from 'react';
 import { Query, Mutation } from 'react-apollo';
-import { CLIENTES_QUERY } from '../queries/index';
-import { ELIMINAR_CLIENTE } from '../mutations/index';
+import { CLIENTES_QUERY } from '../../queries/index';
+import { ELIMINAR_CLIENTE } from '../../mutations/index';
 import { Link } from 'react-router-dom';
-import Paginador from './Paginador';
+import Paginador from '../Paginador';
 
 class Cliente extends Component {
 
