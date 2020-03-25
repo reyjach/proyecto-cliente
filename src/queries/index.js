@@ -29,4 +29,18 @@ export const CLIENTE_QUERY = gql `
 
 
 `;
+
+//PRODUCTOS
+
+export const OBTENER_PRODUCTOS = gql `
+  query{
+    obtenerProductos{
+      id
+      nombre
+      precio
+      stock
+    }
+  }
+
+`;
   
