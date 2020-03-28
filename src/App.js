@@ -37,12 +37,12 @@ class App extends Component{
             <Header></Header>
             <div className="container">
               <Switch>
-                <Route exact path='/' component={Clientes}></Route>
-                <Route exact path='/cliente/editar/:id' component={EditarCliente}></Route>
-                <Route exact path='/cliente/nuevo' component={NuevoCliente}></Route>
-                <Route exact path='/productos/nuevo' component={NuevoProducto}></Route>
+                <Route exact path='/clientes' component={Clientes}></Route>
+                <Route exact path='/clientes/editar/:id' component={EditarCliente}></Route>
+                <Route exact path='/clientes/nuevo' component={NuevoCliente}></Route>
                 <Route exact path='/productos' component={Productos}></Route>
                 <Route exact path='/productos/editar/:id' component={EditarProducto}></Route>
+                <Route exact path='/productos/nuevo' component={NuevoProducto}></Route>
               </Switch>
             </div>
           </React.Fragment>

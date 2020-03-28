@@ -3,16 +3,43 @@ import { Query, Mutation } from 'react-apollo';
 import { OBTENER_PRODUCTOS } from '../../queries/index';
 import { Link } from 'react-router-dom';
 import { ELIMINAR_PRODUCTO } from '../../mutations/index';
-import Exito from '../Alerta/Exito'
+import Exito from '../Alerta/Exito';
+import Paginador from '../Paginador';
 
 class Productos extends Component {
+
+    limite = 2;
+
     state = { 
 
         alerta: {
             mostrar: false,
             mensaje: ''
+        },
+        paginador:{
+            offset:0,
+            actual:1
         }
      }
+    
+
+    paginaAnterior = () =>{
+        this.setState({
+            paginador: {
+                offset: this.state.paginador.offset - this.limite,
+                actual: this.state.paginador.actual - 1
+            }
+        })
+    }
+
+    paginaSiguiente = () =>{
+        this.setState({
+            paginador: {
+                offset: this.state.paginador.offset + this.limite,
+                actual: this.state.paginador.actual + 1
+            }
+        })
+    }
     render() { 
 
         const {alerta: {mostrar, mensaje}} = this.state;
@@ -23,15 +50,17 @@ class Productos extends Component {
             <React.Fragment>
                 <h1 className="text-center mb-5">Productos</h1>
                 {alerta}
-                <Query query={OBTENER_PRODUCTOS} pollInterval={1000}>
+                <Query query={OBTENER_PRODUCTOS} pollInterval={1000} variables={{limite:this.limite, offset: this.state.paginador.offset}}>
                     {({ loading, error, data, startPolling, stopPolling}) => {
                         if(loading) return 'Cargando...';
                         if(error) return `Error ${error.message}`;
 
-                        console.log(data.obtenerProductos)
+                        console.log(data)
             
                         return (
+                            <React.Fragment>
 
+                            
                             <table className="table">
                                 <thead>
                                     <tr className="table-primary">
@@ -99,6 +128,11 @@ class Productos extends Component {
                                     })}
                                 </tbody>
                             </table>
+                            <Paginador actual={this.state.paginador.actual} total={data.totalProductos} limite={this.limite} paginaAnterior={this.paginaAnterior} paginaSiguiente={this.paginaSiguiente}>
+
+                            </Paginador>
+
+                            </React.Fragment>
                             
                         )
                     }}
