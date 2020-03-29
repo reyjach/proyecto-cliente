@@ -52,7 +52,12 @@ class Productos extends Component {
                 {alerta}
                 <Query query={OBTENER_PRODUCTOS} pollInterval={1000} variables={{limite:this.limite, offset: this.state.paginador.offset}}>
                     {({ loading, error, data, startPolling, stopPolling}) => {
-                        if(loading) return 'Cargando...';
+                        if(loading) return (
+                                <div className="spinner">
+                                    <div className="bounce1"></div>
+                                    <div className="bounce2"></div>
+                                    <div className="bounce3"></div>
+                                </div>);
                         if(error) return `Error ${error.message}`;
 
                         console.log(data)

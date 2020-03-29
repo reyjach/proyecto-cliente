@@ -48,7 +48,12 @@ class Cliente extends Component {
         return ( 
                 <Query query={CLIENTES_QUERY} pollInterval={1000} variables={{limite: this.limite, offset: this.state.paginador.offset}}>
                     {({ loading, error, data, startPolling, stopPolling}) => {
-                        if(loading) return 'Cargando...';
+                        if(loading) return (
+                                <div className="spinner">
+                                    <div className="bounce1"></div>
+                                    <div className="bounce2"></div>
+                                    <div className="bounce3"></div>
+                                </div>);
                         if(error) return `Error ${error.message}`;
                         console.log(data)
             
@@ -67,6 +72,7 @@ class Cliente extends Component {
                                                 {item.nombre} {item.apellido} - {item.empresa}
                                             </div>
                                             <div className="col-md-4 d-flex justify-content-end">
+                                            <Link to={`/pedidos/nuevo/${id}`} className="btn btn-warning d-block d-md-inline-block mr-2"> &#43; Nuevo Pedido</Link>
                                             <Mutation mutation={ELIMINAR_CLIENTE} onCompleted={(data) =>{
                                                         //console.log(data)
                                                         this.setState({

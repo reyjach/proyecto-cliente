@@ -20,7 +20,12 @@ class EditarProducto extends Component {
                 <div className="row justify-content-center">
                     <Query query={OBTENER_PRODUCTO} variables={{id}}>
                     {({ loading, error , data, refetch}) => {
-                        if(loading) return 'Cargando...';
+                        if(loading) return (
+                                <div className="spinner">
+                                    <div className="bounce1"></div>
+                                    <div className="bounce2"></div>
+                                    <div className="bounce3"></div>
+                                </div>);
                         if(error) return `Error ${error.message}`;
 
                         return(
