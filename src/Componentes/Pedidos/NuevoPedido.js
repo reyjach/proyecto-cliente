@@ -28,10 +28,10 @@ class NuevoPedidio extends Component {
                                 </div>);
                             if(error) return `Error ${error.message}`;
 
-                            console.log(data.obtenerProductos)
+                            //console.log(data.obtenerProductos)
 
                             return(
-                                <ContenidoPedido producto={data.obtenerProductos} id={id}>
+                                <ContenidoPedido productos={data.obtenerProductos} id={id}>
                                     
                                 </ContenidoPedido>
                             )

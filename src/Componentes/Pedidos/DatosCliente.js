@@ -18,7 +18,7 @@ const DatosCliente = ({id}) => {
                                 </div>);
                 if(error) return `Error ${error.message}`;
 
-                console.log(data.getCliente)
+                //console.log(data.getCliente)
 
                 const {nombre, apellido, empresa, edad, tipo, emails} = data.getCliente;
 
