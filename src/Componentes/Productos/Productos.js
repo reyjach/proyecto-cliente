@@ -60,7 +60,7 @@ class Productos extends Component {
                                 </div>);
                         if(error) return `Error ${error.message}`;
 
-                        console.log(data)
+                        //console.log(data)
             
                         return (
                             <React.Fragment>

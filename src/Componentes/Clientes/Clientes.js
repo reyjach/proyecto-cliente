@@ -55,7 +55,7 @@ class Cliente extends Component {
                                     <div className="bounce3"></div>
                                 </div>);
                         if(error) return `Error ${error.message}`;
-                        console.log(data)
+                        //console.log(data)
             
                         return (
                             <React.Fragment>
