@@ -57,3 +57,7 @@ code {
     transform: scale(1.0);
   }
 }
+
+.card{
+  border-width: 4px;
+}
