@@ -58,7 +58,7 @@ export const OBTENER_PRODUCTO = gql `
 // Pedidos
 
 export const OBTENER_PEDIDOS = gql `
-  query obtenerPedidos($cliente: String){
+  query obtenerPedidos($cliente: ID){
     obtenerPedidos(cliente: $cliente){
       id
       total
@@ -67,6 +67,17 @@ export const OBTENER_PEDIDOS = gql `
       pedido {
         id
         cantidad
+      }
+  }
+}
+`;
+
+export const TOP_CLIENTES = gql `
+  query topClientes {
+    topClientes{
+      total
+      cliente{
+        nombre
       }
   }
 }

@@ -82,8 +82,18 @@ class Productos extends Component {
 
                                         const{id} = item;
 
+                                        const { stock } = item;
+
+                                        let clase;
+
+                                        if(stock < 50) {
+                                            clase = 'text-light table-danger';
+                                        } else if(stock > 51 && stock < 100) {
+                                            clase = 'table-warning';
+                                        }
+
                                        return (
-                                        <tr key={id}>
+                                        <tr key={id} className = {clase}>
                                             <td>{item.nombre}</td>
                                             <td>{item.precio}</td>
                                             <td>{item.stock}</td>
