@@ -18,13 +18,15 @@ const Clientes = () => {
 
                         console.log(data)
 
-                        const topClientesGrafica = [];
+                        let topClientesGrafica = [];
 
                         data.topClientes.map((pedido, index) => {
                             topClientesGrafica[index] = {
                                 ...pedido.cliente[0],
                                 total:pedido.total
                             }
+
+                    
                         });
 
                         console.log(topClientesGrafica)
