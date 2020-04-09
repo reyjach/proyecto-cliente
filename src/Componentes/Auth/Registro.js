@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { Mutation } from 'react-apollo';
 import { NUEVO_USUARIO } from '../../mutations/index';
+import Error from '../Alerta/Error'
+
+import { withRouter } from 'react-router-dom';
 
 const inicialState = {
     usuario: '',
@@ -24,7 +27,10 @@ class Registro extends Component {
 
         crearUsuario().then(data => {
             this.limpiarState();
+            // redireciona ndo a login
+            this.props.history.push('/login')
         })
+        
     }
 
     actualizarState = e => {
@@ -62,6 +68,7 @@ class Registro extends Component {
                                     className="col-md-8"
                                     onSubmit={ e => this.crearRegistro(e, crearUsuario) }
                                  >
+                                    {error && <Error error={error}></Error>}
                                         <div className="form-group">
                                             <label>Usuario</label>
                                             <input 
@@ -97,7 +104,7 @@ class Registro extends Component {
                                         </div>
 
                                         <button 
-                                            disabled={this.validarForm()}
+                                            disabled={loading || this.validarForm()}
                                             type="submit" 
                                             className="btn btn-success float-right">
                                                 Crear Usuario
@@ -113,4 +120,4 @@ class Registro extends Component {
     }
 }
  
-export default Registro;
+export default withRouter(Registro);
