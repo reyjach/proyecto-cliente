@@ -16,7 +16,7 @@ const Clientes = () => {
                                 </div>);
                         if(error) return `Error ${error.message}`;
 
-                        console.log(data)
+                        //console.log(data)
 
                         let topClientesGrafica = [];
 
@@ -29,7 +29,7 @@ const Clientes = () => {
                     
                         });
 
-                        console.log(topClientesGrafica)
+                        //console.log(topClientesGrafica)
             
                         return (
                             <BarChart

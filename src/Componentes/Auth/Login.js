@@ -41,12 +41,15 @@ class Login extends Component {
             localStorage.setItem('token', data.autenticarUsuario.token)
 
             //ejecutar el query una vez se haya iniciado sesion
-
+            await this.props.refetch();
             //limpiar el state
 
             this.limpiarState()
 
             // redireccionar
+            setTimeout (() => {
+                this.props.history.push('/panel')
+            },3000);
         })
      }
 
@@ -125,4 +128,4 @@ class Login extends Component {
     }
 }
  
-export default Login;
+export default withRouter(Login);
