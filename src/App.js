@@ -36,7 +36,7 @@ const App = ({refetch,session}) => {
     
       <Router>
         <React.Fragment>
-          <Header></Header>
+          <Header session={session}></Header>
           <div className="container">
             <p className="text-right">{mensaje}</p>
             <Switch>
