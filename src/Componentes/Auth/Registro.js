@@ -8,7 +8,9 @@ import { withRouter } from 'react-router-dom';
 const inicialState = {
     usuario: '',
     password: '',
-    repetirPassword: ''
+    repetirPassword: '',
+    nombre: '',
+    rol: ''
 }
 
 class Registro extends Component {
@@ -23,7 +25,7 @@ class Registro extends Component {
     crearRegistro = (e, crearUsuario) => {
         e.preventDefault();
         
-        console.log('Creando Registro')
+        //console.log('Creando Registro')
 
         crearUsuario().then(data => {
             this.limpiarState();
@@ -42,9 +44,9 @@ class Registro extends Component {
     }
 
     validarForm = () => {
-        const {usuario, password, repetirPassword} = this.state;
+        const {usuario, password, repetirPassword, rol, nombre} = this.state;
 
-        const noValido = !usuario || !password || password !== repetirPassword;
+        const noValido = !usuario || !password || !nombre || !rol || password !== repetirPassword;
 
         //console.log(noValido)
 
@@ -52,14 +54,14 @@ class Registro extends Component {
     }
     render() { 
 
-        const {usuario, password, repetirPassword } = this.state;
+        const {usuario, password, repetirPassword, rol, nombre} = this.state;
 
 
         return ( 
             <React.Fragment>
                 <h1 className="text-center mb-5">Nuevo Usuario</h1>
                 <div className="row  justify-content-center">
-                    <Mutation mutation={NUEVO_USUARIO} variables={{usuario, password}}>
+                    <Mutation mutation={NUEVO_USUARIO} variables={{usuario, nombre, password, rol}}>
                         {(crearUsuario, {loading, error, data}) => {
 
 
@@ -79,30 +81,57 @@ class Registro extends Component {
                                                 placeholder="Nombre Usuario" 
                                                 value={usuario}
                                             />
+                                            <small className="form-text text-muted">
+                                                (Sin espacios y sin caracteres especiales)
+                                            </small>
                                         </div>
                                         <div className="form-group">
-                                            <label>Password</label>
+                                            <label>Nombre</label>
                                             <input 
                                                 onChange={this.actualizarState}
-                                                type="password" 
-                                                name="password" 
+                                                type="text" 
+                                                name="nombre" 
                                                 className="form-control" 
-                                                placeholder="Password"
-                                                value={password}
+                                                placeholder="Nombre Completo" 
+                                                value={nombre}
                                             />
+                                            <small className="form-text text-muted">
+                                                (Agrega el Nombre y Apellidos Completo)
+                                            </small>
+                                        </div>
+                                        <div className="form-row">
+                                            <div className="form-group col-md-6">
+                                                <label>Password</label>
+                                                <input 
+                                                    onChange={this.actualizarState}
+                                                    type="password" 
+                                                    name="password" 
+                                                    className="form-control" 
+                                                    placeholder="Password"
+                                                    value={password}
+                                                />
+                                            </div>
+                                            <div className="form-group col-md-6">
+                                                <label>Repetir Password</label>
+                                                <input
+                                                    onChange={this.actualizarState} 
+                                                    type="password" 
+                                                    name="repetirPassword" 
+                                                    className="form-control" 
+                                                    placeholder="Repetir Password"
+                                                    value={repetirPassword}
+                                                />
+                                            </div>
                                         </div>
                                         <div className="form-group">
-                                            <label>Repetir Password</label>
-                                            <input
-                                                onChange={this.actualizarState} 
-                                                type="password" 
-                                                name="repetirPassword" 
-                                                className="form-control" 
-                                                placeholder="Repetir Password"
-                                                value={repetirPassword}
-                                            />
-                                        </div>
+                                            <label>Rol: </label>
 
+                                            <select className="form-control" value={rol} name="rol" onChange={this.actualizarState}>
+                                                <option value="">Elegir...</option>
+                                                <option value="ADMINISTRADOR">ADMINISTRADOR</option>
+                                                <option value="VENDEDOR">VENDEDOR</option>
+                                            </select>
+                                        </div>
                                         <button 
                                             disabled={loading || this.validarForm()}
                                             type="submit" 

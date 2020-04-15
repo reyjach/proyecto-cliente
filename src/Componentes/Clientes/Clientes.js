@@ -41,12 +41,28 @@ class Cliente extends Component {
 
     render() { 
 
+        //alestar para mostrar que se elimino correctamente
         const {alerta: {mostrar, mensaje}} = this.state;
-
         const alerta = (mostrar) ? <Exito mensaje={mensaje}></Exito> : '';
 
+        //obteniendo id del vendedor para mostrar sus clientes
+        //console.log(this.props.session.obtenerUsuario)
+
+        let id;
+        const {rol} = this.props.session.obtenerUsuario;
+
+        if(rol === 'VENDEDOR'){
+            id = this.props.session.obtenerUsuario.id;
+        }else {
+            id = '';
+        }
+
         return ( 
-                <Query query={CLIENTES_QUERY} pollInterval={1000} variables={{limite: this.limite, offset: this.state.paginador.offset}}>
+                <Query query={CLIENTES_QUERY} pollInterval={1000} variables={
+                    {limite: this.limite, 
+                    offset: this.state.paginador.offset, 
+                    vendedor: id}
+                    }>
                     {({ loading, error, data, startPolling, stopPolling}) => {
                         if(loading) return (
                                 <div className="spinner">
