@@ -15,7 +15,7 @@ const CerrarSession = ({history}) => (
         {cliente => {
             return (
                 <button onClick={() => CerrarSessionUsuario(cliente, history)} 
-                    className="btn btn-light ml-md-2 mt-2 mt-md-0">
+                    className="btn btn-danger ml-md-2 mt-2 mt-md-0">
                         Cerrar Sesión
                 </button>
         );
