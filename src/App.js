@@ -48,7 +48,7 @@ const App = ({refetch,session}) => {
               <Route exact path='/productos' component={Productos}></Route>
               <Route exact path='/productos/editar/:id' component={EditarProducto}></Route>
               <Route exact path='/productos/nuevo' component={NuevoProducto}></Route>
-              <Route exact path='/pedidos/nuevo/:id' component={NuevoPedido}></Route>
+              <Route exact path='/pedidos/nuevo/:id' render={() => <NuevoPedido session={session}></NuevoPedido>}></Route>
               <Route exact path='/pedidos/:id' component={PedidosCliente}></Route>
               <Route exact path='/registro' render={() => <Registro session={session}></Registro>}></Route>
               <Route exact path='/login' render={() => <Login refetch={refetch}></Login>}></Route>

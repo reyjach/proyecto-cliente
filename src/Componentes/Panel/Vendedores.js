@@ -1,12 +1,12 @@
 import React from 'react';
 import { Query } from 'react-apollo';
-import { TOP_CLIENTES } from '../../queries/index';
+import { TOP_VENDEDORES } from '../../queries/index';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
   
 
-const Clientes = () => {
+const Vendedores = () => {
     return ( 
-        <Query query={TOP_CLIENTES}>
+        <Query query={TOP_VENDEDORES}>
             {({ loading, error, data}) => {
                         if(loading) return (
                                 <div className="spinner">
@@ -18,24 +18,24 @@ const Clientes = () => {
 
                         //console.log(data)
 
-                        let topClientesGrafica = [];
+                        let topVendedoresGrafica = [];
 
-                        data.topClientes.map((pedido, index) => {
-                            topClientesGrafica[index] = {
-                                ...pedido.cliente[0],
-                                total:pedido.total
+                        data.topVendedores.map((vendedor, index) => {
+                            topVendedoresGrafica[index] = {
+                                ...vendedor.vendedor[0],
+                                total:vendedor.total
                             }
 
                     
                         });
 
-                        //console.log(topClientesGrafica)
+                        //console.log(topVendedoresGrafica)
             
                         return (
                             <BarChart
                                 width={900}
                                 height={300}
-                                data={topClientesGrafica}
+                                data={topVendedoresGrafica}
                                 margin={{
                                 top: 5, right: 30, left: 20, bottom: 5,
                                 }}
@@ -44,7 +44,7 @@ const Clientes = () => {
                                 <XAxis dataKey="nombre" />
                                 <YAxis />
                                 <Tooltip />
-                                <Bar dataKey="total" fill="#10a98b" />
+                                <Bar dataKey="total" fill="#6148b9" />
                             </BarChart>
                         )
             }}
@@ -52,4 +52,4 @@ const Clientes = () => {
      );
 }
  
-export default Clientes;
+export default Vendedores;

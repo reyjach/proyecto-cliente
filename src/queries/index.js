@@ -8,7 +8,7 @@ export const CLIENTES_QUERY = gql `
           apellido
           empresa
       }
-    totalClientes
+    totalClientes(vendedor: $vendedor)
 }
 `;
 
@@ -79,6 +79,17 @@ export const TOP_CLIENTES = gql `
       cliente{
         nombre
       }
+  }
+}
+`;
+
+export const TOP_VENDEDORES = gql `
+  query topVendedores{
+  topVendedores{
+    total
+  	vendedor{
+      nombre
+    }
   }
 }
 `;

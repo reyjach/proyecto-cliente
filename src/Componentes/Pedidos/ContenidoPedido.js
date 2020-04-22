@@ -110,7 +110,7 @@ class ContenidoPedido extends Component {
                     </span>
                 </p>
 
-                <GenerarPedido productos={this.state.productos} total={this.state.total} idCliente={this.props.id}></GenerarPedido>
+                <GenerarPedido productos={this.state.productos} total={this.state.total} idCliente={this.props.id} idVendedor={this.props.idVendedor}></GenerarPedido>
             </React.Fragment>
             
         );
